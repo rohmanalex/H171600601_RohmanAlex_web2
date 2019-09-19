@@ -12,10 +12,11 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
+                background-color: #4d542f;
+                color: #000;
+                font-family: 'Aqua', sans-serif;
+                font-weight: bold ;
+                font-style: aqua ;
                 height: 100vh;
                 margin: 0;
             }
@@ -49,10 +50,10 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #000;
                 padding: 0 25px;
                 font-size: 13px;
-                font-weight: 600;
+                font-weight: bold ;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
