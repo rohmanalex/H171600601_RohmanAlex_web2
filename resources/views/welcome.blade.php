@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Assalamualaikum</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -12,7 +12,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #4d542f;
+                background-color: #ffff;
                 color: #000;
                 font-family: 'Aqua', sans-serif;
                 font-weight: bold ;
@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Assalamualaikum
                 </div>
 
                 <div class="links">

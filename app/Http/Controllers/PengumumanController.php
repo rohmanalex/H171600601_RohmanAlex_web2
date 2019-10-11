@@ -2,86 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use App\Pengumuman;
 use Illuminate\Http\Request;
+use App\Pengumuman;
+use App\KategoriPengumuman;
 
 class PengumumanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function index(){
+        $Pengumuman=Pengumuman::all();
+
+        return view ('pengumuman.index',compact('Pengumuman'));
+    }
+    public function show($id)
     {
-        $pengumuman = pengumuman::all();
-        
-        return view('pengumuman.index', compact('pengumuman'));
+    
+    	$pengumuman=pengumuman::find($id);
+
+    	return view(  'pengumuman.show',compact( 'pengumuman'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+    	$KategoriPengumuman=KategoriPengumuman::pluck('nama','id');
+    	
+
+    	return view( 'pengumuman.create',compact('KategoriPengumuman'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+    	$input= $request->all();
+    	
+    	pengumuman::create($input);
+
+    	return redirect(route('pengumuman.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pengumuman  $pengumuman
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pengumuman $pengumuman)
+    public function edit($id)
     {
-        //
+        $pengumuman=pengumuman::find($id);
+    	$KategoriPengumuman=KategoriPengumuman::pluck('nama','id');
+
+        if (empty($pengumuman))
+        { return redirect(route('pengumuman.index')); }
+
+        return view( 'pengumuman.edit',compact( 'pengumuman','KategoriPengumuman'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pengumuman  $pengumuman
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pengumuman $pengumuman)
+    public function update($id,Request $request)
     {
-        //
+    
+    	$pengumuman=pengumuman::find($id);
+        $input= $request->all();
+
+        if (empty($pengumuman))
+        { return redirect(route('pengumuman.index')); }
+
+        $pengumuman->update($input);
+        return redirect(route('pengumuman.index'));
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pengumuman  $pengumuman
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pengumuman $pengumuman)
+    public function destroy($id)
     {
-        //
+    
+        $pengumuman=pengumuman::find($id);
+        
+        if (empty($pengumuman))
+        { return redirect(route('pengumuman.index')); }
+
+        $pengumuman->delete();
+        return redirect(route('pengumuman.index'));
+    }
+     public function trash()
+    {
+        $Pengumuman=Pengumuman::onlyTrashed()
+        ->whereNotNull('deleted_at')
+        ->get();
+        
+        return view('pengumuman.index',compact('Pengumuman'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pengumuman  $pengumuman
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pengumuman $pengumuman)
-    {
-        //
-    }
 }

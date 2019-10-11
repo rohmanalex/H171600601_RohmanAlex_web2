@@ -8,9 +8,10 @@ class CaptchaController extends Controller
 {
     //
     public function create()
-        {
+    {
     return view('captchacreate');
-        }
+    }
+
 public function captchaValidate(Request $request)
 {
     $request->validate([
@@ -20,8 +21,12 @@ public function captchaValidate(Request $request)
         'captcha' => 'required|captcha'
     ]);
 }
+
 public function refreshCaptcha()
 {
-    return response()->json(['captcha'=> captcha_img()]);
+   return response()->json(['captcha'=> captcha_img()]);
+
 }
 }
+
+
